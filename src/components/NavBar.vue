@@ -24,11 +24,15 @@ export default {
           items: [
             {
               label: "Buscar vehículos disponibles",
-              to: "/clientes",
+             command: () => {
+                this.$router.push("");
+              },
             },
             {
               label: "Reservar vehículo ",
-              to: "",
+              command: () => {
+                this.$router.push("");
+              },
             },
             {
               label: "Registrarse como cliente ",
@@ -111,6 +115,15 @@ export default {
     toggleMenu() {
       this.icon = this.menuOpen ? "pi pi-bars" : "pi pi-times";
       this.menuOpen = !this.menuOpen;
+    },
+    handleItemClick(item) {
+      console.log("Item Clicked:", item);
+      // Verificar si el elemento de menú tiene una propiedad 'to'
+      if (item.to) {
+        // Redirigir a la ruta especificada
+        console.log("Redirecting to:", item.to);
+        this.$router.push(item.to);
+      }
     },
   },
 };
