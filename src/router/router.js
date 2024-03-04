@@ -19,11 +19,11 @@ const routes = [
     },
     {
         path: '/Crudempleado',
-        component: () => import('../components/empleados/Crudempleado')
+        component: () => import('../components/empleados/CRUDEmpleado')
     },
     {
         path: '/Crudvehiculo',
-        component: () => import('../components/empleados/Crudvehiculo')
+        component: () => import('../components/empleados/CRUDVehiculo')
     },
     {
         path: '/Retirarvehículoreservado',
@@ -35,7 +35,7 @@ const routes = [
     },
     {
         path: '/Reportesreservas',
-        component: () => import('../components/reportes/Reportesreservas')
+        component: () => import('../components/reportes/ReportesReservas')
     },
     {
         path: '/:patMatch(.*)*',

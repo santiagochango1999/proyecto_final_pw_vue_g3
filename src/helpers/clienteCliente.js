@@ -50,10 +50,12 @@ export const actualizarDatosFachada = async (id, body) => {
 //Agregado
 const buscarCedula = async (cedula) => {
   const data = axios
-    .get(`http://localhost:8090/API/v1.0/budget/clientes/clienteCedula?cedula=${cedula}`)
+    .get(
+      `http://localhost:8090/API/v1.0/budget/clientes/clienteCedula/${cedula}`
+    )
     .then((r) => r.data);
   console.log(data);
-  return data
+  return data;
 };
 
 export const buscarCedulaFachada = async (cedula) => {
@@ -67,4 +69,19 @@ const actualizarCliente = async (body, id) => {
 };
 export const actualizarClienteFachada = async (body, id) => {
   return await actualizarCliente(body, id);
+};
+
+//ReservarVehiculoPorPlaca
+const busvarVehiculoPorPlaca = async (placa) => {
+  const data = axios
+    .get(
+      `http://localhost:8090/API/v1.0/budget/clientes/buscarVehiculoPlaca/${marca}`
+    )
+    .then((r) => r.data);
+  console.log("buscando vehiculo placa ", placa);
+  return data;
+};
+
+export const busvarVehiculoPorPlacaFachada = async (placa) => {
+  return await busvarVehiculoPorPlaca(placa);
 };

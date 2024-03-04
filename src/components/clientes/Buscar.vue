@@ -8,6 +8,8 @@
           <td>Marca</td>
           <td>Estado</td>
           <td>Valor</td>
+          <td>Actualizar</td>
+          <td>Eliminar</td>
         </tr>
       </thead>
       <tbody>
@@ -17,8 +19,12 @@
           <td>{{ dato.marca }}</td>
           <td>{{ dato.estado }}</td>
           <td>{{ dato.valorDia }}</td>
-          <td>Actualizar</td>
-          <td>Eliminar</td>
+          <td>
+            <button @click="actualizar(dato, dato.id)">Actualizar</button>
+          </td>
+          <td>
+            <button @click="eliminar(dato.id)">Eliminar</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -27,10 +33,15 @@
 
 <script>
 import { consultarVehiculosDisponiblesFachada } from "@/helpers/clienteCliente";
+import {
+  eliminarDatosFachada,
+  actualizarDatosVehiculoFachada
+} from "@/helpers/clienteVehiculo";
+
 export default {
   data() {
     return {
-      datos: null,
+      datos: null
     };
   },
   methods: {
@@ -38,8 +49,14 @@ export default {
       this.datos = await consultarVehiculosDisponiblesFachada();
       console.log(this.datos);
     },
-    eliminar() {},
-    actualizar() {},
+    async eliminar(id) {
+      location.reload();
+      console.log(id);
+      await eliminarDatosFachada(id);
+    },
+    async actualizar(dato) {
+      await actualizarDatosVehiculoFachada(dato, dato.id);
+    }
   },
   beforeMount() {
     this.consultar();
@@ -48,9 +65,8 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
-    margin-top: 40px;
+  margin-top: 40px;
 
   /* par poner sobre las demas cosas position:relative */
   position: relative;
