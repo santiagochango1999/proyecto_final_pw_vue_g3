@@ -24,23 +24,27 @@ export default {
           items: [
             {
               label: "Buscar vehículos disponibles",
-             command: () => {
-                this.$router.push("");
+              command: () => {
+                this.$router.push("/BuscarVDisponible");
               },
             },
             {
               label: "Reservar vehículo ",
               command: () => {
-                this.$router.push("");
+                this.$router.push("/ReservarVehiculo");
               },
             },
             {
               label: "Registrarse como cliente ",
-              to: "",
+              command: () => {
+                this.$router.push("/RegistrarseCliente");
+              },
             },
             {
               label: "Actualizar sus datos de cliente ",
-              to: "",
+              command: () => {
+                this.$router.push("/ActualizarDatosCliente");
+              },
             },
           ],
         },
@@ -49,53 +53,73 @@ export default {
           items: [
             {
               label: "Registrar cliente",
-              to: "",
+              command: () => {
+                this.$router.push("/Crudempleado");
+              },
             },
             {
               label: "Opciones cliente",
               items: [
                 {
                   label: "Buscar",
-                  to: "",
+                  command: () => {
+                    this.$router.push("/Crudempleado");
+                  },
                 },
                 {
                   label: "actualizar",
-                  to: "",
+                  command: () => {
+                    this.$router.push("/Crudempleado");
+                  },
                 },
                 {
                   label: "eliminar cliente ",
-                  to: "",
+                  command: () => {
+                    this.$router.push("/Crudempleado");
+                  },
                 },
               ],
             },
             {
               label: "Ingresar un vehículo",
-              to: "",
+              command: () => {
+                this.$router.push("/Crudvehiculo");
+              },
             },
             {
               label: "Opciones cliente",
               items: [
                 {
                   label: "Buscar",
-                  to: "",
+                  command: () => {
+                    this.$router.push("/Crudvehiculo");
+                  },
                 },
                 {
                   label: "actualizar",
-                  to: "",
+                  command: () => {
+                    this.$router.push("/Crudvehiculo");
+                  },
                 },
                 {
                   label: "eliminar vehiculo ",
-                  to: "",
+                  command: () => {
+                    this.$router.push("/Crudvehiculo");
+                  },
                 },
               ],
             },
             {
               label: "Retirar un vehículo reservado ",
-              to: "",
+              command: () => {
+                this.$router.push("/Retirarvehículoreservado");
+              },
             },
             {
               label: "Retirar un vehículo sin reserva ",
-              to: "",
+              command: () => {
+                this.$router.push("/Retirarvehículosinreserva");
+              },
             },
           ],
         },
@@ -104,7 +128,9 @@ export default {
           items: [
             {
               label: "Reporte de Reservas",
-              to: "/reportes/reservas",
+              command: () => {
+                this.$router.push("/Reportesreservas");
+              },
             },
           ],
         },
@@ -116,15 +142,7 @@ export default {
       this.icon = this.menuOpen ? "pi pi-bars" : "pi pi-times";
       this.menuOpen = !this.menuOpen;
     },
-    handleItemClick(item) {
-      console.log("Item Clicked:", item);
-      // Verificar si el elemento de menú tiene una propiedad 'to'
-      if (item.to) {
-        // Redirigir a la ruta especificada
-        console.log("Redirecting to:", item.to);
-        this.$router.push(item.to);
-      }
-    },
+    
   },
 };
 </script>
@@ -148,25 +166,16 @@ img {
   display: flex;
   justify-content: center;
 }
-a {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 30px;
-  padding: 10px 30px;
-  border: solid 1px rgb(0, 0, 0);
-  margin: 10px 20px;
-  background: white;
-  border-radius: 6px;
-  color: rgb(56, 119, 160);
-  text-decoration: none;
-  transition: transform 0.3s ease;
-}
-a:hover {
-  transform: scale(1.05);
-}
+
 .p-menubar {
-  background-color: #f80303; /* Fondo del Menubar */
+  margin: 10px;
+  padding: 0px 40px;
+  background-color: #ffffff; /* Fondo del Menubar */
   border: none;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+  
 }
+
+
 </style>

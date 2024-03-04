@@ -2,16 +2,40 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
     {
-        path: '/clientes',
-        component: () => import('../page/PaginaCliente')
+        path: '/ActualizarDatosCliente',
+        component: () => import('../components/clientes/Actualizar')
     },
     {
-        path: '/empleados',
-        component: () => import('../page/PaginaEmpleado')
+        path: '/BuscarVDisponible',
+        component: () => import('../components/clientes/Buscar')
     },
     {
-        path: '/reportes',
-        component: () => import('../page/PaginaReportes')
+        path: '/RegistrarseCliente',
+        component: () => import('../components/clientes/Registrarse')
+    },
+    {
+        path: '/ReservarVehiculo',
+        component: () => import('../components/clientes/Reservar')
+    },
+    {
+        path: '/Crudempleado',
+        component: () => import('../components/empleados/Crudempleado')
+    },
+    {
+        path: '/Crudvehiculo',
+        component: () => import('../components/empleados/Crudvehiculo')
+    },
+    {
+        path: '/Retirarvehículoreservado',
+        component: () => import('../components/empleados/Retirar')
+    },
+    {
+        path: '/Retirarvehículosinreserva',
+        component: () => import('../components/empleados/Retirasinreserva')
+    },
+    {
+        path: '/Reportesreservas',
+        component: () => import('../components/reportes/Reportesreservas')
     },
     {
         path: '/:patMatch(.*)*',

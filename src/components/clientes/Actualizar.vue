@@ -1,8 +1,15 @@
 <template>
-    <div class="registro-cliente">
+   <div class="container">
+     <div>
+        <input v-model="valor" type="text" placeholder="Ingrese su cedula">
+        <button @click="buscar()">Buscar</button>
+        
+    </div>
+    <br>
+    <div v-if="cliente !== null" class="registro-cliente">
         <h1>Registro Cliente</h1>
         <p>Cédula</p>
-        <input v-model="cid" type="text">
+        <input v-model="cid" type="text" disabled>
         <p>Nombre</p>
         <input v-model="name" type="text">
         <p>Apellido</p>
@@ -11,49 +18,74 @@
         <input v-model="fechan" type="date">
         <p>Género</p>
         <input v-model="gender" type="text">
-        <button @click="registrar">Registrarse</button>
+        <button @click="actualizar()">Actualizar</button>
     </div>
+   </div>
 </template>
 
-
 <script>
-import { registrarseFachada } from '../helper/clientCliente'
+
+import { buscarCedulaFachada, actualizarClienteFachada } from '@/helpers/clienteCliente'
 export default {
     data() {
         return {
+            valor: null,
+            id:null,
             cid: null,
             name: null,
             lastname: null,
             fechan: null,
             gender: null,
-            cliente: null
+            cliente: null,
         }
     },
     methods: {
-        async registrar() {
+        async actualizar() {
             this.cliente = {
+                id:this.id,
                 cedula: this.cid,
                 nombre: this.name,
                 apellido: this.lastname,
                 fechaNac: this.fechan,
                 genero: this.gender
             }
+            console.log("Cliente antes de actualiza");
             console.log(this.cliente);
-            await registrarseFachada(this.cliente)
+            console.log(this.cliente.id);
+            await actualizarClienteFachada(this.cliente,this.cliente.id)
             this.resetear()
         },
         resetear() {
+            this.id = null
             this.cid = null
             this.name = null
             this.lastname = null
             this.fechan = null
             this.gender = null
+            this.cliente = null
+        },
+        async buscar() {
+            const data = await buscarCedulaFachada(this.valor)
+            this.cliente=data
+            this.id=data.id
+            this.cid = data.cedula
+            this.name = data.nombre
+            this.lastname = data.apellido
+            this.fechan = data.fechaNac
+            this.gender = data.genero
+            console.log(this.cliente);
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
+.container {
+      margin-top: 40px;
+
+  /* par poner sobre las demas cosas position:relative */
+  position: relative;
+}
 .registro-cliente {
     border: 1px solid #ddd;
     border-radius: 4px;
