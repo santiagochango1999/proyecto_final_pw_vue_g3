@@ -75,7 +75,7 @@ export const actualizarClienteFachada = async (body, id) => {
 const busvarVehiculoPorPlaca = async (placa) => {
   const data = axios
     .get(
-      `http://localhost:8090/API/v1.0/budget/clientes/buscarVehiculoPlaca/${marca}`
+      `http://localhost:8090/API/v1.0/budget/clientes/buscarVehiculoPlaca/${placa}`
     )
     .then((r) => r.data);
   console.log("buscando vehiculo placa ", placa);
@@ -84,4 +84,27 @@ const busvarVehiculoPorPlaca = async (placa) => {
 
 export const busvarVehiculoPorPlacaFachada = async (placa) => {
   return await busvarVehiculoPorPlaca(placa);
+};
+
+//reservar Vehiculo Completo
+const reservarVehiculoCompleto = async (
+  numeroTargeta,
+  fechaInicio,
+  fechaFin
+) => {
+  const data = axios
+    .get(
+      `http://localhost:8090/API/v1.0/budget/clientes/calcular/${numeroTargeta}?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`
+    )
+    .then((r) => r.data);
+  console.log("registrando por numero de targeta");
+  return data;
+};
+
+export const reservarVehiculoCompletoFachada = async (
+  numeroTargeta,
+  fechaInicio,
+  fechaFin
+) => {
+  return await reservarVehiculoCompleto(numeroTargeta, fechaInicio, fechaFin);
 };
