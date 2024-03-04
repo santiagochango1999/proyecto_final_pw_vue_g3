@@ -8,8 +8,6 @@
           <td>Marca</td>
           <td>Estado</td>
           <td>Valor</td>
-          <td>Actualizar</td>
-          <td>Eliminar</td>
         </tr>
       </thead>
       <tbody>
@@ -19,12 +17,6 @@
           <td>{{ dato.marca }}</td>
           <td>{{ dato.estado }}</td>
           <td>{{ dato.valorDia }}</td>
-          <td>
-            <button @click="actualizar(dato, dato.id)">Actualizar</button>
-          </td>
-          <td>
-            <button @click="eliminar(dato.id)">Eliminar</button>
-          </td>
         </tr>
       </tbody>
     </table>

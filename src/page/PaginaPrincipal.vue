@@ -1,11 +1,13 @@
 <template>
-  <img
-    src="https://cdn-3.expansion.mx/5c/9f/a90131784d8fa9e4dedd6b73af2a/avis-tesla.png"
-    alt="no se encontro"
-  />
-  <div class="dark"></div>
-  <div class="container">
-    <NavBar />
+  <div>
+    <img
+      src="https://cdn-3.expansion.mx/5c/9f/a90131784d8fa9e4dedd6b73af2a/avis-tesla.png"
+      alt="no se encontro"
+    />
+    <div class="dark"></div>
+    <div class="container">
+      <NavBar />
+    </div>
   </div>
 </template>
 
@@ -13,8 +15,8 @@
 import NavBar from "@/components/NavBar.vue";
 export default {
   components: {
-    NavBar,
-  },
+    NavBar
+  }
 };
 </script>
 

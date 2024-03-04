@@ -83,28 +83,28 @@ export default {
             {
               label: "Ingresar un vehículo",
               command: () => {
-                this.$router.push("/Crudvehiculo");
+                this.$router.push("/crudVehiculo/guardar");
               },
             },
             {
-              label: "Opciones cliente",
+              label: "Opciones vehiculo",
               items: [
                 {
                   label: "Buscar",
                   command: () => {
-                    this.$router.push("/Crudvehiculo");
+                    this.$router.push("/crudVehiculo/buscar");
                   },
                 },
                 {
                   label: "actualizar",
                   command: () => {
-                    this.$router.push("/Crudvehiculo");
+                    this.$router.push("/crudVehiculo/actualizar");
                   },
                 },
                 {
                   label: "eliminar vehiculo ",
                   command: () => {
-                    this.$router.push("/Crudvehiculo");
+                    this.$router.push("/crudVehiculo/eliminar");
                   },
                 },
               ],

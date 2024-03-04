@@ -88,23 +88,59 @@ export const busvarVehiculoPorPlacaFachada = async (placa) => {
 
 //reservar Vehiculo Completo
 const reservarVehiculoCompleto = async (
+  bodyReserva,
   numeroTargeta,
   fechaInicio,
   fechaFin
 ) => {
   const data = axios
-    .get(
-      `http://localhost:8090/API/v1.0/budget/clientes/calcular/${numeroTargeta}?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`
+    .post(
+      `http://localhost:8090/API/v1.0/budget/clientes/clienteCalcular/${numeroTargeta}?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+      bodyReserva
     )
     .then((r) => r.data);
-  console.log("registrando por numero de targeta");
+  console.log(data);
   return data;
 };
 
 export const reservarVehiculoCompletoFachada = async (
+  bodyReserva,
   numeroTargeta,
   fechaInicio,
   fechaFin
 ) => {
-  return await reservarVehiculoCompleto(numeroTargeta, fechaInicio, fechaFin);
+  return await reservarVehiculoCompleto(bodyReserva,numeroTargeta, fechaInicio, fechaFin);
 };
+
+// Registrarse Empleado
+
+const registrarseEmp = async (body) => {
+  const data = axios.post(`http://localhost:8090/API/v1.0/budget/empleados/guardarCliente`, body)
+    .then(r => r.data);
+  console.log(data);
+};
+
+export const registrarseEmpFachada = async (body) => {
+  return await registrarseEmp(body);
+};
+
+// Buscar Por Apellido
+const buscarApellido = async (apellido) => {
+  const data = axios.get(`http://localhost:8090/API/v1.0/budget/clientes/clienteApellido?apellido=${apellido}`).then((r) => r.data);
+  console.log(data);
+  return data
+};
+
+export const buscarApellidoFachada = async (apellido) => {
+  return await buscarApellido(apellido);
+};
+
+// Eliminar
+const eliminarCliente = async (id) => {
+  const data = axios.delete(`http://localhost:8090/API/v1.0/budget/clientes/${id}`).then(r => r.data);
+  console.log(data);
+}
+
+export const eliminarFachada = async (id) => {
+  await eliminarCliente(id);
+}

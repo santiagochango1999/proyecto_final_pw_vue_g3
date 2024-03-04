@@ -87,7 +87,7 @@ const eliminarVehiculo = async (id) => {
   console.log(data);
   return data;
 };
-export const eliminarVehiculoloFachada = async (id) => {
+export const eliminarVehiculoFachada = async (id) => {
   return await eliminarVehiculo(id);
 };
 
@@ -134,4 +134,31 @@ const reportesClienteVehiculo = async (fechaInicio, fechaFin) => {
 
 export const reportesClienteVehiculoFachada = async (fechaInicio, fechaFin) => {
   return await reportesClienteVehiculo(fechaInicio, fechaFin);
+};
+
+//funcino numero reserva
+const reservaNumero = async (numero) => {
+  const data = axios
+    .get(
+      `http://localhost:8090/API/v1.0/budget/reservas/reservaNumero/${numero}`
+    )
+    .then((r) => r.data);
+  console.log("numero ", numero);
+  return data;
+};
+
+export const reservaNumeroFachada = async (numero) => {
+  return await reservaNumero(numero);
+};
+
+//funcion obtener el ultimo numero de reserva
+const obtainReservaUltimateNumber = async () => {
+  const data = axios
+    .get(`http://localhost:8090/API/v1.0/budget/reservas/totalReservas`)
+    .then((r) => r.data);
+  return data;
+};
+
+export const obtainReservaUltimateNumberFachada = async () => {
+  return await obtainReservaUltimateNumber();
 };

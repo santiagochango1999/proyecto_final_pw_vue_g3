@@ -16,7 +16,7 @@
 
     <button @click="validacionPlaca()">Generar</button>
 
-    <div v-if="verificacion">
+    <div v-if="verificacion" class="boxTarget">
       <label for>Numero Tarjeta</label>
       <input type="text" v-model="numeroTarget" />
       <button @click="generarReserva()">Pagar</button>
@@ -31,7 +31,10 @@ import {
   buscarCedulaFachada
 } from "@/helpers/clienteCliente";
 
-import reportesClienteVehiculoFachada from "@/helpers/clienteReserva";
+import {
+  reportesClienteVehiculoFachada,
+  obtainReservaUltimateNumberFachada
+} from "@/helpers/clienteReserva";
 
 export default {
   data() {
@@ -47,16 +50,17 @@ export default {
       },
       reserva: {
         type: Object,
-        requieed: false
-      },
-      data: {
         required: false
       },
       numeroTarget: null,
       placa: null,
       fechaInicio: null,
       fechaFin: null,
-      verificacion: false
+      verificacion: false,
+      reservaNumero: false,
+      total: {
+        required: false
+      }
     };
   },
   methods: {
@@ -69,12 +73,21 @@ export default {
         if (this.cliente !== null) {
           console.log(this.fechaInicio);
           console.log(this.fechaFin);
-          // this.reserva = await reportesClienteVehiculoFachada(
-          //   this.fechaInicio,
-          //   this.fechaFin
-          // );
+          const tmp = await reportesClienteVehiculoFachada(
+            this.fechaInicio,
+            this.fechaFin
+          );
+          if (
+            tmp.fechaInicio != this.fechaInicio &&
+            tmp.fechaFin != this.fechaFin
+          ) {
+            this.reserva = await reportesClienteVehiculoFachada(
+              this.fechaInicio,
+              this.fechaFin
+            );
+          }
           console.log("reserva ", this.reserva);
-          if (this.reserva !== null) {
+          if (this.reserva != null) {
             this.verificacion = true;
             console.log("verificacion exitosa");
           } else {
@@ -89,17 +102,21 @@ export default {
     },
     async generarReserva() {
       console.log("generar reserva");
-      this.data = await reservarVehiculoCompletoFachada(
+      const body = {
+        vehiculo: this.vehiculo,
+        cliente: this.cliente
+      };
+      console.log(body);
+      await reservarVehiculoCompletoFachada(
+        body,
         this.numeroTarget,
         this.fechaInicio,
         this.fechaFin
       );
-      console.log(this.data);
-      alert("Se genero el pago.");
+      this.total = await obtainReservaUltimateNumberFachada();
+      console.log("data -> ",this.total);
+      alert(`Se genero el pago, su numero de reserva es ${this.total[0].id}`);
     }
-    // async generarProceso() {
-    //   await this.validacionPlaca();
-    // }
   }
 };
 </script>
@@ -108,5 +125,9 @@ export default {
 .container {
   /* par poner sobre las demas cosas position:relative */
   position: relative;
+}
+
+.boxTarget {
+  background: white;
 }
 </style>

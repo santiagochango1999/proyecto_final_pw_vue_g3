@@ -1,6 +1,8 @@
 <template>
-  <paginaPrincipal />
-  <router-view />
+  <div>
+    <paginaPrincipal />
+    <router-view key="$route.fullPath" />
+  </div>
 </template>
 
 <script>
@@ -8,8 +10,8 @@ import paginaPrincipal from "./page/PaginaPrincipal.vue";
 export default {
   name: "App",
   components: {
-    paginaPrincipal,
-  },
+    paginaPrincipal
+  }
 };
 </script>
 
