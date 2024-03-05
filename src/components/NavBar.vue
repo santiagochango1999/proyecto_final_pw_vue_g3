@@ -54,31 +54,14 @@ export default {
             {
               label: "Registrar cliente",
               command: () => {
-                this.$router.push("/Crudempleado");
+                this.$router.push("/crudEmpleado");
               },
             },
             {
               label: "Opciones cliente",
-              items: [
-                {
-                  label: "Buscar",
-                  command: () => {
-                    this.$router.push("/Crudempleado");
-                  },
-                },
-                {
-                  label: "actualizar",
-                  command: () => {
-                    this.$router.push("/Crudempleado");
-                  },
-                },
-                {
-                  label: "eliminar cliente ",
-                  command: () => {
-                    this.$router.push("/Crudempleado");
-                  },
-                },
-              ],
+              command: () => {
+                this.$router.push("/crud2Empleado");
+              },
             },
             {
               label: "Ingresar un vehículo",
@@ -94,7 +77,7 @@ export default {
                   command: () => {
                     this.$router.push("/crud2Vehiculo");
                   },
-                }
+                },
               ],
             },
             {
@@ -130,7 +113,6 @@ export default {
       this.icon = this.menuOpen ? "pi pi-bars" : "pi pi-times";
       this.menuOpen = !this.menuOpen;
     },
-    
   },
 };
 </script>
@@ -162,8 +144,5 @@ img {
   border: none;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
-  
 }
-
-
 </style>

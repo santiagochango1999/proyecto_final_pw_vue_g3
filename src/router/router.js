@@ -18,8 +18,12 @@ const routes = [
     component: () => import("../components/clientes/Reservar"),
   },
   {
-    path: "/Crudempleado",
+    path: "/crudEmpleado",
     component: () => import("../components/empleados/CRUDEmpleado"),
+  },
+  {
+    path: "/crud2Empleado",
+    component: () => import("../page/PaginaEmpActualizar.vue"),
   },
   {
     path: "/Retirarvehículoreservado",

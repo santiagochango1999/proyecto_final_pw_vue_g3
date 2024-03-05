@@ -112,6 +112,8 @@ export const reservarVehiculoCompletoFachada = async (
   return await reservarVehiculoCompleto(bodyReserva,numeroTargeta, fechaInicio, fechaFin);
 };
 
+// EMPLEADO
+
 // Registrarse Empleado
 
 const registrarseEmp = async (body) => {
@@ -144,3 +146,25 @@ const eliminarCliente = async (id) => {
 export const eliminarFachada = async (id) => {
   await eliminarCliente(id);
 }
+
+// Actualizar Cliente desde Empleado
+const actualizarClienteEmp = async (body) => {
+  axios
+    .put(`http://localhost:8090/API/v1.0/budget/empleados/buscarCliente`, body)
+    .then((r) => r.data);
+};
+export const actualizarClienteEmpFachada = async (body) => {
+  await actualizarClienteEmp(body);
+};
+
+// Buscar Cliente id original
+const buscarClientePorId = async (id) => {
+  const data = axios
+    .get(`http://localhost:8090/API/v1.0/budget/clientes/${id}`)
+    .then((r) => r.data);
+  return data;
+};
+
+export const buscarClientePorIdFachada = async (id) => {
+  return await buscarClientePorId(id);
+};

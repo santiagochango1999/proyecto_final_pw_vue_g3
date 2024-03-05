@@ -1,228 +1,159 @@
 <template>
   <div class="container">
-    
-    <div v-if="!mostrar">
-      <div v-if="cliente === null" class="buscar">
-        <input v-model="lastname" type="text" placeholder="Ingrese apellido" />
-        <button @click="buscar">Buscar</button>
-      </div>
+    <h1>Componente Empleado</h1>
+    <div class="formulario">
+      <div class="insertar">
+        <p type="Cédula: ">
+          <input v-model="cedula" type="text" />
+        </p>
+        <p type="Nombre: ">
+          <input v-model="nombre" type="text" />
+        </p>
+        <p type="Apellido: ">
+          <input v-model="apellido" type="text" />
+        </p>
+        <p type="Fecha de Nacimiento: ">
+          <input v-model="fechaNacimiento" type="datetime-local" />
+        </p>
+        <p type="Género: ">
+          <input v-model="genero" type="text" />
+        </p>
+        <p type="Edad: ">
+          <input v-model="edad" type="text" />
+        </p>
 
-      <div v-if="cliente !== null">
-        <table class="tabla-avis">
-          <thead class="fila-cabecera">
-            <tr>
-              <th>Cedula</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-
-              <th>Visualizar</th>
-              <th>Actualizar</th>
-              <th>Borrar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for:="cl in cliente" :key="cl.id">
-              <td>{{ cl.cedula }}</td>
-              <td>{{ cl.nombre }}</td>
-              <td>{{ cl.apellido }}</td>
-
-              <td><button @click="visualizar">Visualizar</button></td>
-              <!--<router-link to="/visualizar" @click="buscar">Visualizar</router-link>-->
-              <!--<td><button @click="actualizar">Actualizar</button></td>-->
-              <router-link to="/actualizar">Actualizar</router-link>
-              <td><button @click="eliminar(cl.id)">Eliminar</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <button @click="insertar()">GUARDAR</button>
+        </div>
+        <button @click="actualizar()">ACTUALIZAR</button>
       </div>
     </div>
-
-    <div v-if="mostrar" class="container2">
-      <h1>Empleado Comp</h1>
-      <div>
-        <table class="tabla-avis">
-          <thead class="fila-cabecera">
-            <tr>
-              <th>Cedula</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Fecha de Nacimiento</th>
-              <th>Género</th>
-              <th>Edad</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for:="cl in cliente" :key="cl.id">
-              <td>{{ cl.cedula }}</td>
-              <td>{{ cl.nombre }}</td>
-              <td>{{ cl.apellido }}</td>
-              <td>{{ cl.fechaNacimiento }}</td>
-              <td>{{ cl.genero }}</td>
-              <td>{{ cl.edad }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
   </div>
 </template>
 
 <script>
 import {
-  buscarApellidoFachada,
-  actualizarClienteFachada,
-  eliminarFachada,
+  registrarseEmpFachada,
+  actualizarClienteEmpFachada,
 } from "@/helpers/clienteCliente";
-// import VisualizarEmpleado from "./VisualizarEmpleado.vue";
 
 export default {
-  components: {
-    VisualizarEmpleado,
-  },
   data() {
     return {
+      action: "",
       id: null,
-      cid: null,
-      name: null,
-      lastname: null,
-      fechan: null,
-      gender: null,
+      cedula: null,
+      nombre: null,
+      apellido: null,
+      fechaNacimiento: null,
+      genero: null,
       edad: null,
       cliente: null,
-      mostrar: false,
     };
   },
-  methods: {
-    async buscar() {
-      console.log(this.lastname);
-      const data = await buscarApellidoFachada(this.lastname);
-      this.cliente = data;
-      console.log("CRUD buscar")
-      console.log(data);
-      this.cid = data.cedula;
-      this.name = data.nombre;
-      this.lastname = data.apellido;
-      this.fechan = data.fechaNacimiento;
-      this.gender = data.genero;
-      this.edad = data.edad;
-      //this.$emit("selecciono", data);
+  props: {
+    txtButon: {
+      type: Object,
+      require: true,
     },
-    async visualizar() {
-      console.log("met visualizar");
-      console.log(this.cliente);
-      this.mostrar = true;
-      console.log(this.mostrar);
-      //this.$emit("selecciono", data);
+  },
+  methods: {
+    async insertar() {
+      const estuBody = {
+        cedula: this.cedula,
+        nombre: this.nombre,
+        apellido: this.apellido,
+        fechaNacimiento: this.fechaNacimiento,
+        genero: this.genero,
+        edad: this.edad,
+      };
+      await registrarseEmpFachada(estuBody);
     },
     async actualizar() {
-      this.cliente = {
-        cedula: this.cid,
-        nombre: this.name,
-        apellido: this.lastname,
-        fechaNac: this.fechan,
-        genero: this.gender,
-      };
-      console.log("Cliente antes de actualizar");
-      console.log(this.cliente);
-      console.log(this.cliente.id);
-      await actualizarClienteFachada(this.cliente, this.cliente.id);
-      this.resetear();
-    },
-    async eliminar(id) {
-      await eliminarFachada(id);
-      this.cliente = this.cliente.filter((cl) => cl.id !== id);
-      this.resetear();
-    },
-    resetear() {
-      this.id = null;
-      this.cid = null;
-      this.name = null;
-      this.lastname = null;
-      this.fechan = null;
-      this.gender = null;
+      this.txtButon.cedula = this.cedula;
+      this.txtButon.nombre = this.nombre;
+      this.txtButon.apellido = this.apellido;
+      this.txtButon.fechaNacimiento = this.fechaNacimiento;
+      this.txtButon.genero = this.genero;
+      this.txtButon.edad = this.edad;
+
+      await actualizarClienteEmpFachada(this.txtButon);
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   margin-top: 40px;
   /* par poner sobre las demas cosas position:relative */
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
 }
-table {
-  border-collapse: collapse;
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+body {
+  background-color: #0091ffb0;
+}
+
+.form {
+  width: 340px;
+  height: 450px;
+  background-color: #ffe6e6;
+  border-radius: 8px;
+  padding: 20px 30px;
+  box-shadow: 0 0 40px -10px #868181;
+}
+
+p:before {
+  content: attr(type);
+  display: block;
+  margin: 5px 2px;
+  font-size: 14px;
+  color: #5a5a5a;
+  justify-content: left;
+  align-items: left;
+}
+
+input {
   width: 100%;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
+  border-radius: 5px;
+  border-bottom: 1px #ffffff;
+  background: rgb(255, 233, 233);
+  color: rgb(0, 0, 0);
 }
 
-th,
-td {
-  padding: 8px;
-  text-align: left;
+input:focus {
+  border-bottom: 3px solid #78788c;
 }
-
-/* Table header (thead) */
-th {
-  background-color: #e5e5e5;
-  color: #ffffff;
-  font-weight: bold;
+label {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-
-/* Specific styles for the "tabla-avis" class */
-.tabla-avis {
-  border-radius: 4px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+p {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-bottom: 2px solid #bebed2;
 }
-
-.tabla-avis th {
-  color: #fff; /* Corrected white text color for header */
+button {
+  border-radius: 5px;
+  padding: 7px;
+  font-size: 14px;
+  background: #8bb5dd;
+  margin-top: 10px;
 }
-
-.tabla-avis td {
-  color: #070505;
-}
-
-.tabla-avis tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-/* Additional styling for table elements */
-.tabla-avis .fila-cabecera {
-  /* Custom class for table header row */
-  background-color: #ff7462; /* Avis red */
-  color: #000000; /* Ensured white text color for header row */
-  font-weight: bold;
-
+h1 {
+  padding-bottom: 15px;
+  color: #00268f;
   text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-
-.tabla-avis .celda-texto {
-  /* Custom class for cell containing text */
-  text-align: left;
-  padding-left: 20px;
-}
-
-.tabla-avis .boton-accion {
-  /* Custom class for buttons (Actualizar, Eliminar) */
-  background-color: #b71c1c; /* Avis red */
-  color: #fff;
-  border-radius: 4px;
-  padding: 5px 10px;
+.boton {
   text-align: center;
-  cursor: pointer;
-}
-
-.tabla-avis .boton-accion:hover {
-  /* Optional: add hover effect for buttons */
-  background-color: #a51b1b; /* Darken red on hover */
-}
-
-.tabla-avis tbody tr:hover {
-  /* Optional: add hover effect for table rows */
-  background-color: rgba(98, 255, 145, 0.842);
 }
 </style>

@@ -8,11 +8,7 @@
         <td>Marca</td>
         <td>Placa</td>
         <td>Modelo</td>
-        <td>Año de Fabricación</td>
-        <td>Pais de Fabricación</td>
-        <td>Cilindraje</td>
-        <td>Avaluo</td>
-        <td>Valor por día</td>
+        
         <td>Visualizar</td>
         <td>Actualizar</td>
         <td>Eliminar</td>
@@ -22,11 +18,7 @@
         <td>{{vehi.marca}}</td>
         <td>{{vehi.placa}}</td>
         <td>{{vehi.modelo}}</td>
-        <td>{{vehi.anioFabricacion}}</td>
-        <td>{{vehi.paisFabricacion}}</td>
-        <td>{{vehi.cilindraje}}</td>
-        <td>{{vehi.avaluo}}</td>
-        <td>{{vehi.valorDia}}</td>
+       
         <td>
           <button @click="visualizarDatosVehiculo(vehi.id)">Visualizar</button>
         </td>
