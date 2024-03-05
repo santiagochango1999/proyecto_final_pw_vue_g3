@@ -11,8 +11,8 @@
     </div>
   </div>
 </template>
-  
-  <script>
+
+<script>
 import CRUDVehiculo from "@/components/empleados/CRUDVehiculo.vue";
 import ActualizarVehiculo from "../components/empleados/ActualizarVehiculo.vue";
 import VisualizarVehiculo from "@/components/empleados/VisualizarVehiculo.vue";
@@ -21,21 +21,21 @@ export default {
   components: {
     ActualizarVehiculo,
     CRUDVehiculo,
-    VisualizarVehiculo
+    VisualizarVehiculo,
   },
   data() {
     return {
       buton: {
         type: Object,
-        required: false
+        required: false,
       },
       data: {
         type: Object,
-        required: false
+        required: false,
       },
       get1: false,
       get0: true,
-      get2: false
+      get2: false,
     };
   },
   methods: {
@@ -54,15 +54,14 @@ export default {
       this.get2 = false;
       this.get0 = false;
       this.data = valor1;
-    }
-  }
+    },
+  },
 };
 </script>
-  
-  <style scoped>
+
+<style scoped>
 .container {
   /* par poner sobre las demas cosas position:relative */
   position: relative;
 }
 </style>
-  

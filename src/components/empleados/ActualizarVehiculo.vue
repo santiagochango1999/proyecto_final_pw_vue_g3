@@ -35,10 +35,11 @@
         <p type="Valor por día: ">
           <input v-model="valorDia" type="text" placeholder="Valor por día" />
         </p>
-
-        <button @click="actualizar()">Actualizar</button>
-        <div>
-          <button @click="regresar()">Regresar</button>
+        <div class="botonesGA">
+          <button @click="actualizar()">Actualizar</button>
+          <div>
+            <button @click="regresar()">Regresar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -98,26 +99,34 @@ export default {
 };
 </script>
 <style scoped>
-.formulario {
-  display: flex;
-  flex-direction: column;
-}
-body {
-  background-color: #0091ffb0;
-}
-
 .container {
+  margin-top: 40px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: monospace;
+  max-width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
-.form {
-  width: 340px;
-  height: 450px;
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
   background-color: #ffe6e6;
+  margin: 0;
+}
+
+.insertar {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #ffcccc;
   border-radius: 8px;
   padding: 20px 30px;
   box-shadow: 0 0 40px -10px #868181;
@@ -129,48 +138,50 @@ p:before {
   margin: 5px 2px;
   font-size: 14px;
   color: #5a5a5a;
-  justify-content: left;
-  align-items: left;
 }
 
 input {
   width: 100%;
   border-radius: 5px;
-  border-bottom: 1px #ffffff;
-  background: rgb(255, 233, 233);
-  color: rgb(0, 0, 0);
+  border-bottom: 1px solid #78788c;
+  background: #ffcccc;
+  color: #5a5a5a;
+  box-sizing: border-box; /* para incluir el padding en el ancho total */
 }
 
 input:focus {
-  border-bottom: 3px solid #78788c;
+  border-bottom: 3px solid #ff6666;
 }
-label {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
-p {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  border-bottom: 2px solid #bebed2;
-}
+
 button {
   border-radius: 5px;
   padding: 7px;
   font-size: 14px;
-  background: #8bb5dd;
   margin-top: 10px;
+  color: #ffffff;
+  background: #ff6666;
+  transition: background 0.3s ease; /* para suavizar el cambio de color */
 }
+
+button:hover {
+  background: #ff3333;
+}
+
 h1 {
   padding-bottom: 15px;
-  color: #00268f;
+  color: #ff3333;
   text-align: center;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.boton {
-  text-align: center;
+
+@media (max-width: 480px) {
+  .insertar {
+    padding: 20px; /* Reducir el padding en pantallas más pequeñas */
+  }
 }
-.container {
-  margin-top: 40px;
-  /* par poner sobre las demas cosas position:relative */
-  position: relative;
+.botonesGA {
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 </style>
