@@ -89,28 +89,28 @@ export default {
 <style scoped>
 .container {
   margin-top: 40px;
-
   /* par poner sobre las demas cosas position:relative */
   position: relative;
 }
 .registro-cliente {
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   border-radius: 4px;
   padding: 20px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   margin-left: 31%;
   margin-right: 31%;
+  background: rgb(53, 51, 51);
 }
 
 .registro-cliente p {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  color: white;
 }
 
 .registro-cliente input {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin: 5px solid black;
   text-align: center;
 }
 
@@ -118,7 +118,7 @@ export default {
 .registro-cliente button {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   border-radius: 4px;
   margin-bottom: 10px;
 }
@@ -127,5 +127,36 @@ export default {
   background-color: #b71c1c;
   color: #fff;
   cursor: pointer;
+  font-weight: bold;
+}
+h1 {
+  padding-left: 30%;
+  color: white;
+}
+
+button {
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  background: #e66868;
+  color: #ffffff;
+  transition: background 0.3s ease;
+  margin-right: 10px; /* Agregamos un margen a la derecha para separar el botón del input */
+}
+button:hover {
+  background: #ff3333;
+}
+input {
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid #78788c;
+  background: #ffcccc;
+  color: #5a5a5a;
+  box-sizing: border-box;
+  padding: 10px;
+}
+input:hover {
+  border-bottom: 3px solid #d10707;
 }
 </style>

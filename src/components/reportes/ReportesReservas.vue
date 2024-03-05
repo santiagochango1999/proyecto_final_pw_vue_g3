@@ -15,7 +15,7 @@
 
       <button @click="generarReporte">Generar reporte</button>
 
-      <table>
+      <table class="tableContenido">
         <thead>
           <tr>
             <th>ID</th>
@@ -75,25 +75,74 @@ export default {
 
 <style scoped>
 .container {
-  /* par poner sobre las demas cosas position:relative */
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center;
-  background: white;
+  width: 80%;
+  background: #ffbbbb;
   position: relative;
   margin: 40px;
   border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .container2 {
-  border: solid;
-  padding: 10px 20px;
-  margin: 10px 0px;
-}
-button {
+  border: 1px solid #ff6666;
+  padding: 20px;
   margin: 20px;
-  margin-left: 100px;
+  border-radius: 5px;
+  width: 90%;
 }
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ffcccc;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #e66868;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #cc4040;
+}
+
 h2 {
-  margin-left: 40px;
+  margin-left: 10px;
+  color: #cc4040;
+}
+
+.tableContenido {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 2px;
+  background-color: rgba(241, 120, 120, 0.7);
+  color: white;
 }
 </style>

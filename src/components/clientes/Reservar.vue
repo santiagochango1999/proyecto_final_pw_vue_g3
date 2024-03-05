@@ -1,25 +1,29 @@
 <template>
   <div class="container">
-    <h1>Reservar Vehiculo</h1>
+    <div class="formulario">
+      <div class="registro-vehiculo">
+        <h1>Reservar Vehiculo</h1>
 
-    <label for>Placa</label>
-    <input type="text" v-model="placa" />
+        <label for>Placa</label>
+        <input type="text" v-model="placa" />
 
-    <label for>Cedula</label>
-    <input type="text" v-model="cedula" />
+        <label for>Cedula</label>
+        <input type="text" v-model="cedula" />
 
-    <label for>Fecha Inicio</label>
-    <input type="datetime" v-model="fechaInicio" />
+        <label for>Fecha Inicio</label>
+        <input type="datetime" v-model="fechaInicio" />
 
-    <label for>Fecha Fin</label>
-    <input type="datetime" v-model="fechaFin" />
+        <label for>Fecha Fin</label>
+        <input type="datetime" v-model="fechaFin" />
 
-    <button @click="validacionPlaca()">Generar</button>
+        <button @click="validacionPlaca()">Generar</button>
 
-    <div v-if="verificacion" class="boxTarget">
-      <label for>Numero Tarjeta</label>
-      <input type="text" v-model="numeroTarget" />
-      <button @click="generarReserva()">Pagar</button>
+        <div v-if="verificacion" class="boxTarget">
+          <label for>Numero Tarjeta</label>
+          <input type="text" v-model="numeroTarget" />
+          <button @click="generarReserva()">Pagar</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -123,11 +127,88 @@ export default {
 
 <style scoped>
 .container {
-  /* par poner sobre las demas cosas position:relative */
+  margin-top: 40px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  max-width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
-.boxTarget {
-  background: white;
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background-color: #ffe6e6;
+  margin: 0;
+}
+
+.registro-vehiculo {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #ffcccc;
+  border-radius: 8px;
+  padding: 20px 30px;
+  box-shadow: 0 0 40px -10px #868181;
+}
+
+p:before {
+  content: attr(type);
+  display: block;
+  margin: 5px 2px;
+  font-size: 14px;
+  color: #5a5a5a;
+}
+
+input {
+  width: 100%;
+  border-radius: 5px;
+  border-bottom: 1px solid #78788c;
+  background: #ffcccc;
+  color: #5a5a5a;
+  box-sizing: border-box; /* para incluir el padding en el ancho total */
+}
+
+input:focus {
+  border-bottom: 3px solid #ff6666;
+}
+
+button {
+  border-radius: 5px;
+  padding: 7px;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #ffffff;
+  background: #ff6666;
+  transition: background 0.3s ease; /* para suavizar el cambio de color */
+}
+
+button:hover {
+  background: #ff3333;
+}
+
+h1 {
+  padding-bottom: 15px;
+  color: #837575;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+@media (max-width: 480px) {
+  .insertar {
+    padding: 20px; /* Reducir el padding en pantallas más pequeñas */
+  }
+}
+.botR {
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 </style>

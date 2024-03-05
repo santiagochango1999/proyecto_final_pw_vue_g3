@@ -98,7 +98,7 @@ th {
   color: #070505;
 }
 
-.tabla-avis tr:nth-child(even) {
+.tabla-avis {
   background-color: #f9f9f9;
 }
 

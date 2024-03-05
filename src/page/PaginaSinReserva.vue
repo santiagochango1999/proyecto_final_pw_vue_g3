@@ -56,4 +56,17 @@ export default {
   /* par poner sobre las demas cosas position:relative */
   position: relative;
 }
+button {
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  background: #e66868;
+  color: #ffffff;
+  transition: background 0.3s ease;
+  margin-right: 10px; /* Agregamos un margen a la derecha para separar el botón del input */
+}
+button:hover {
+  background: #ff3333;
+}
 </style>
