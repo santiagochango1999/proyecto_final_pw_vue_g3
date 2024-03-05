@@ -8,7 +8,7 @@
   
   <script>
 // import CRUDVehiculo from "../components/empleados/CRUDVehiculo.vue";
-import CRUDVistaVehiculo from "@/components/empleados/CRUDVistaVehiculo.vue";
+import CRUDVistaVehiculo from "@/components/empleados/VisualizarVehiculo.vue";
 
 export default {
   components: {

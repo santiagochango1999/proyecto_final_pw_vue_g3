@@ -9,9 +9,11 @@
       <p>Apellido</p>
       <input v-model="lastname" type="text" />
       <p>Fecha de Nacimiento</p>
-      <input v-model="fechan" type="date" />
+      <input v-model="fechan" type="datetime-local" />
       <p>Género</p>
       <input v-model="gender" type="text" />
+      <p>Edad</p>
+      <input v-model="edad" type="text" />
       <button @click="registrar">Registrarse</button>
     </div>
   </div>
@@ -29,6 +31,7 @@ export default {
       fechan: null,
       gender: null,
       cliente: null,
+      edad: null
     };
   },
   methods: {
@@ -37,8 +40,9 @@ export default {
         cedula: this.cid,
         nombre: this.name,
         apellido: this.lastname,
-        fechaNac: this.fechan,
+        fechaNacimiento: this.fechan,
         genero: this.gender,
+        edad: this.edad
       };
       console.log(this.cliente);
       await registrarseFachada(this.cliente);
@@ -50,6 +54,7 @@ export default {
       this.lastname = null;
       this.fechan = null;
       this.gender = null;
+      this.edad = null
     },
   },
 };

@@ -47,9 +47,8 @@ export const eliminarClienteFachada = async (id) => {
 
 //Funcion 3
 const insertarVehiculo = async (body) => {
-  const data = axios
-    .post(`http://localhost:8090/API/v1.0/budget/vehiculos`, body)
-    .then((r) => r.data);
+  const data = axios.post(`http://localhost:8090/API/v1.0/budget/empleados/ingresarVehiculo`, body)
+    .then(r => r.data);
   console.log(data);
 };
 export const insertarVehiculoFachada = async (body) => {

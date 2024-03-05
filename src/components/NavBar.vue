@@ -54,31 +54,26 @@ export default {
             {
               label: "Registrar cliente",
               command: () => {
-                this.$router.push("/crudEmpleado");
+                this.$router.push("/registrarEmp");
               },
             },
             {
               label: "Opciones cliente",
               command: () => {
-                this.$router.push("/crud2Empleado");
+                this.$router.push("/opcionesEmpleado");
               },
             },
             {
               label: "Ingresar un vehículo",
               command: () => {
-                this.$router.push("/crudVehiculo");
+                this.$router.push("/ingresarVehiculo");
               },
             },
             {
-              label: "Opciones vehiculo",
-              items: [
-                {
-                  label: "Buscar",
-                  command: () => {
-                    this.$router.push("/crud2Vehiculo");
-                  },
-                },
-              ],
+              label: "Opciones vehículo",
+              command: () => {
+                this.$router.push("/opcionesVehiculo");
+              },
             },
             {
               label: "Retirar un vehículo reservado ",

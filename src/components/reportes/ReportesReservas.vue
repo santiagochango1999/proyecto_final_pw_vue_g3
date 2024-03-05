@@ -5,12 +5,12 @@
       <div class="form-group">
         <label for="fechaInicio">Fecha de inicio:</label>
         <tr />
-        <input type="datetime" id="fechaInicio" v-model="fechaInicio" />
+        <input type="datetime-local" id="fechaInicio" v-model="fechaInicio" />
       </div>
       <div class="form-group">
         <label for="fechaFin">Fecha de fin:</label>
         <tr />
-        <input type="datetime" id="fechaFin" v-model="fechaFin" />
+        <input type="datetime-local" id="fechaFin" v-model="fechaFin" />
       </div>
 
       <button @click="generarReporte">Generar reporte</button>

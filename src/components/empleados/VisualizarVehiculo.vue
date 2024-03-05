@@ -37,9 +37,6 @@ export default {
       required: false
     }
   },
-  data() {
-    return {};
-  },
   methods: {
     regresar(){
         location.reload();

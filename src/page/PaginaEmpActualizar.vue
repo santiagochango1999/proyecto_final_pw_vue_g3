@@ -1,27 +1,27 @@
 <template>
   <div class="container">
     <div v-if="get2">
-      <CRUDEmpleado :txt-buton="buton" />
+      <ActualizarClienteEmp :txtButon="buton" />
     </div>
     <div v-if="get0">
-      <CRUDEmpleado2 @creep1="actualizarCRUD" @visualizar="verCliente" />
+      <CRUDEmpleado @creep="actualizarCRUD" @visualizar="verCliente" />
     </div>
     <div v-if="get1">
-      <CRUDVistaEmpleado :data="data" />
+      <VisualizarClienteEmp :data="data" />
     </div>
   </div>
 </template>
 
 <script>
-import CRUDEmpleado from "../components/empleados/CRUDEmpleado.vue";
-import CRUDEmpleado2 from "@/components/empleados/CRUDEmpleado2.vue";
-import CRUDVistaEmpleado from "@/components/empleados/CRUDVistaEmpleado.vue";
+import ActualizarClienteEmp from "../components/empleados/ActualizarClienteEmp.vue";
+import CRUDEmpleado from "@/components/empleados/CRUDEmpleado.vue";
+import VisualizarClienteEmp from "@/components/empleados/VisualizarClienteEmp.vue";
 
 export default {
   components: {
+    ActualizarClienteEmp,
     CRUDEmpleado,
-    CRUDEmpleado2,
-    CRUDVistaEmpleado,
+    VisualizarClienteEmp,
   },
   data() {
     return {
@@ -45,14 +45,11 @@ export default {
       this.get2 = valor2;
       this.get1 = false;
       this.get0 = false;
-      console.log(this.get2);
       this.buton = valor1;
     },
     verCliente(valor) {
       const valor1 = valor.valor1;
       const valor2 = valor.valor2;
-      console.log(valor1);
-      console.log(valor2);
       this.get1 = valor2;
       this.get2 = false;
       this.get0 = false;

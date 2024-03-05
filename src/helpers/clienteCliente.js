@@ -51,7 +51,7 @@ export const actualizarDatosFachada = async (id, body) => {
 const buscarCedula = async (cedula) => {
   const data = axios
     .get(
-      `http://localhost:8090/API/v1.0/budget/clientes/clienteCedula/${cedula}`
+      `http://localhost:8090/API/v1.0/budget/clientes/clienteCedula?cedula=${cedula}`
     )
     .then((r) => r.data);
   console.log(data);

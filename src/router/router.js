@@ -17,14 +17,26 @@ const routes = [
     path: "/ReservarVehiculo",
     component: () => import("../components/clientes/Reservar"),
   },
+  // Empleado
   {
-    path: "/crudEmpleado",
-    component: () => import("../components/empleados/CRUDEmpleado"),
+    path: "/registrarEmp",
+    component: () => import("../components/empleados/RegistrarClienteEmp"),
   },
   {
-    path: "/crud2Empleado",
+    path: "/opcionesEmpleado",
     component: () => import("../page/PaginaEmpActualizar.vue"),
   },
+  ////////
+  // Vehiculo
+  {
+    path: "/ingresarVehiculo",
+    component: () => import("../components/empleados/IngresarVehiculo.vue"),
+  },
+  {
+    path: "/opcionesVehiculo",
+    component: () => import("../page/PaginaVehiculoActualizar.vue"),
+  },
+  ///
   {
     path: "/Retirarvehículoreservado",
     component: () => import("../components/empleados/Retirar"),
@@ -40,18 +52,8 @@ const routes = [
   {
     path: "/:patMatch(.*)*",
     component: () => import("../page/NoFoundPage"),
-  },{
-    path: "/crudVehiculo",
-    component: () => import("../components/empleados/CRUDVehiculo"),
   },
-  {
-    path: "/crudVehiculo",
-    component: () => import("../components/empleados/CRUDVehiculo.vue"),
-  },
-  {
-    path: "/crud2Vehiculo",
-    component: () => import("../page/PaginaVehiculoActualizar.vue"),
-  },
+ 
   // {
   //   path: "/crud2Vehiculo",
   //   component: () => import("../page/PaginaVehiculoBuscar.vue"),
