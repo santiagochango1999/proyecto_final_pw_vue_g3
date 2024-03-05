@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div class="registro-cliente">
+    <form class="registro-cliente" @submit.prevent="registrar">
       <h1>Registro Cliente</h1>
       <p>Cédula</p>
-      <input v-model="cid" type="text" />
+      <input v-model="cid" type="text" pattern="\d{10}" required title="La cédula debe tener 10 dígitos"/>
       <p>Nombre</p>
       <input v-model="name" type="text" />
       <p>Apellido</p>
@@ -14,8 +14,8 @@
       <input v-model="gender" type="text" />
       <p>Edad</p>
       <input v-model="edad" type="text" />
-      <button @click="registrar">Registrarse</button>
-    </div>
+      <button type="submit">Registrarse</button>
+    </form>
   </div>
 </template>
 
@@ -46,6 +46,7 @@ export default {
       };
       console.log(this.cliente);
       await registrarseFachada(this.cliente);
+      alert("Cliente registrado correctamente.");
       this.resetear();
     },
     resetear() {

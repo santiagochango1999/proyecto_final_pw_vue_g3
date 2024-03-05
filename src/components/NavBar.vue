@@ -84,7 +84,7 @@ export default {
             {
               label: "Retirar un vehículo sin reserva ",
               command: () => {
-                this.$router.push("/Retirarvehículosinreserva");
+                this.$router.push("/RetirarSinReserva");
               },
             },
           ],

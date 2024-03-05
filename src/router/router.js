@@ -45,6 +45,11 @@ const routes = [
     path: "/Retirarvehículosinreserva",
     component: () => import("../components/empleados/Retirasinreserva"),
   },
+  //
+  {
+    path: "/RetirarSinReserva",
+    component: () => import("../page/PaginaSinReserva"),
+  },
   {
     path: "/Reportesreservas",
     component: () => import("../components/reportes/ReportesReservas"),

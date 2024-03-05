@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <h1>Componente Empleado</h1>
-    <div class="formulario">
+    <form class="formulario" @submit.prevent="actualizar">
       <div class="insertar">
         <p type="Cédula: ">
-          <input v-model="cedula" type="text" />
+          <input v-model="cedula" type="text" pattern="\d{10}" required title="La cédula debe tener 10 dígitos"/>
         </p>
         <p type="Nombre: ">
           <input v-model="nombre" type="text" />
@@ -22,13 +22,13 @@
           <input v-model="edad" type="text" />
         </p>
 
-        <button @click="actualizar()">Actualizar</button>
+        <button type="submit">Actualizar</button>
 
         <div>
           <button @click="regresar()">Regresar</button>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 

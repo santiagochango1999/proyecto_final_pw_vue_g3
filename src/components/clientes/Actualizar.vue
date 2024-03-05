@@ -5,7 +5,7 @@
       <button @click="buscar()">Buscar</button>
     </div>
     <br />
-    <div v-if="cliente !== null" class="registro-cliente">
+    <form v-if="cliente !== null" class="registro-cliente" @submit.prevent="actualizar">
       <h1>Registro Cliente</h1>
       <p>Cédula</p>
       <input v-model="cid" type="text" disabled />
@@ -19,8 +19,8 @@
       <input v-model="gender" type="text" />
       <p>Edad</p>
       <input v-model="edad" type="text" />
-      <button @click="actualizar()">Actualizar</button>
-    </div>
+      <button type="submit">Actualizar</button>
+    </form>
   </div>
 </template>
 
