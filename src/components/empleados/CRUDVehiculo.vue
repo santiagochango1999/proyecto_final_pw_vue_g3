@@ -2,12 +2,15 @@
   <div class="container">
     <h1>Componente Vehiculo</h1>
     <div class="formulario">
-      <div class="insertar" v-if="action === 'guardar' || action === 'actualizar'">
+      <div class="insertar">
+        <p type="Marca: ">
+          <input v-model="marca" type="text" placeholder="Marca" />
+        </p>
         <p type="Placa: ">
           <input v-model="placa" type="text" placeholder="Placa" />
         </p>
-        <p type="Marca: ">
-          <input v-model="marca" type="text" placeholder="Marca" />
+        <p type="Modelo: ">
+          <input v-model="modelo" type="text" placeholder="Modelo" />
         </p>
         <p type="Año de Fabricación: ">
           <input v-model="anioFabricacion" type="datetime-local" placeholder="Año de Fabricación:" />
@@ -25,19 +28,11 @@
           <input v-model="valorDia" type="text" placeholder="Valor por día" />
         </p>
 
-        <button @click="insertar" v-if="action == 'guardar'">GUARDAR</button>
-        <button @click="verificar" v-if="action == 'actualizar'">ACTUALIZAR</button>
+        <div>
+          <button @click="insertar()">GUARDAR</button>
+        </div>
+        <button @click="actualizar()">ACTUALIZAR</button>
       </div>
-    </div>
-    <div class="consultar" v-if="action == 'buscar'">
-      <input v-model="id" type="text" placeholder="Ingrese ID" />
-      <button @click="consultarPorIdMarca">Consultar</button>
-    </div>
-
-    <div v-if="action == 'eliminar'">
-      <label for>Ingrese el ID a eliminar</label>
-      <input v-model="id" type="text" placeholder="Ingrese ID" />
-      <button @click="eliminar">Eliminar</button>
     </div>
   </div>
 </template>
@@ -63,78 +58,41 @@ export default {
       cilindraje: null,
       avaluo: null,
       valorDia: null,
-      vari: false
+      vari: false,
     };
   },
   props: {
     txtButon: {
-      type: String,
+      type: Object,
       require: true
     }
   },
-  watch: {
-    "$route.params.action"(newValue, oldValue) {
-      this.action = newValue;
-    }
-  },
-
-  mounted() {
-    this.action = this.$route.params.action; // inicializar la variable action
-  },
   methods: {
-    async consultarPorIdMarca() {
-      const data = await buscarVehiculoFachada(this.id);
-
-      this.placa = data.placa;
-      this.modelo = data.modelo;
-      this.marca = data.marca;
-      this.anioFabricacion = data.anioFabricacion;
-      this.paisFabricacion = data.paisFabricacion;
-      this.cilindraje = data.cilindraje;
-      this.avaluo = data.avaluo;
-      this.valorDia = data.valorDia;
-    },
     async insertar() {
       const estuBody = {
         placa: this.placa,
         modelo: this.modelo,
-        genero: this.genero,
-        fechaNacimiento: this.fechaNacimiento,
-        direccion: this.direccion,
-        edad: this.edad,
-        correo: this.correo,
-        facultad: this.facultad,
-        carrera: this.carrera
+        marca: this.marca,
+        anioFabricacion: this.anioFabricacion,
+        paisFabricacion: this.paisFabricacion,
+        cilindraje: this.cilindraje,
+        avaluo: this.avaluo,
+        valorDia: this.valorDia
       };
 
       await insertarVehiculoFachada(estuBody);
     },
     async actualizar() {
-      const body = {
-        placa: this.placa,
-        modelo: this.modelo,
-        genero: this.genero,
-        fechaNacimiento: this.fechaNacimiento,
-        direccion: this.direccion,
-        edad: this.edad,
-        correo: this.correo,
-        facultad: this.facultad,
-        carrera: this.carrera
-      };
-
-      await actualizarVehiculoFachada(this.id, body);
-    },
-    async eliminar() {
-      await eliminarVehiculoFachada(this.id);
-    },
-    async metodos() {
-      if (this.txtButon === "Guardar") {
-        await this.insertar();
-      } else if (this.txtButon === "Actualizar") {
-        await this.actualizar();
-      } else if (this.txtButon === "Consultar") {
-        await this.consultarPorIdMarca();
-      }
+      this.txtButon.marca = this.marca;
+      this.txtButon.placa = this.placa;
+      this.txtButon.modelo = this.modelo;
+      this.txtButon.anioFabricacion = this.anioFabricacion;
+      this.txtButon.paisFabricacion = this.paisFabricacion;
+      this.txtButon.cilindraje = this.cilindraje;
+      this.txtButon.avaluo = this.avaluo;
+      this.txtButon.valorDia = this.valorDia;
+      // console.log(this.txtButon);
+      await actualizarVehiculoFachada(this.txtButon);
     }
   }
 };

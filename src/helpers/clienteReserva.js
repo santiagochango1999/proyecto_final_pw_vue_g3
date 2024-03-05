@@ -69,20 +69,33 @@ export const buscarVehiculoFachada = async (id) => {
 };
 
 //Funcion 4.2
-const actualizarVehiculo = async (id) => {
-  const data = axios
-    .get(`http://localhost:8090/API/v1.0/budget/vehiculos/${id}`)
+const actualizarVehiculo = async (body) => {
+  axios
+    .put(`http://localhost:8090/API/v1.0/budget/vehiculos/buscarVehiculo`, body)
     .then((r) => r.data);
-  console.log(data);
+};
+export const actualizarVehiculoFachada = async (body) => {
+  await actualizarVehiculo(body);
+};
+
+//funcion extra
+const buscarVehiculoPorMarca = async (marca) => {
+  const data = axios
+    .get(
+      `http://localhost:8090/API/v1.0/budget/vehiculos/consultListVehiculos?marca=${marca}`
+    )
+    .then((r) => r.data);
   return data;
 };
-export const actualizarVehiculoFachada = async (id) => {
-  return await actualizarVehiculo(id);
+
+export const buscarVehiculoPorMarcaFachada = async (marca) => {
+  return await buscarVehiculoPorMarca(marca);
 };
+
 //Funcion 4.3
 const eliminarVehiculo = async (id) => {
   const data = axios
-    .get(`http://localhost:8090/API/v1.0/budget/vehiculos/${id}`)
+    .delete(`http://localhost:8090/API/v1.0/budget/vehiculos/${id}`)
     .then((r) => r.data);
   console.log(data);
   return data;

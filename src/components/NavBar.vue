@@ -83,7 +83,7 @@ export default {
             {
               label: "Ingresar un vehículo",
               command: () => {
-                this.$router.push("/crudVehiculo/guardar");
+                this.$router.push("/crudVehiculo");
               },
             },
             {
@@ -92,21 +92,9 @@ export default {
                 {
                   label: "Buscar",
                   command: () => {
-                    this.$router.push("/crudVehiculo/buscar");
+                    this.$router.push("/crud2Vehiculo");
                   },
-                },
-                {
-                  label: "actualizar",
-                  command: () => {
-                    this.$router.push("/crudVehiculo/actualizar");
-                  },
-                },
-                {
-                  label: "eliminar vehiculo ",
-                  command: () => {
-                    this.$router.push("/crudVehiculo/eliminar");
-                  },
-                },
+                }
               ],
             },
             {

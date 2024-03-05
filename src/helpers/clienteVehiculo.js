@@ -47,12 +47,12 @@ const eliminarDatos = async (id) => {
   axios
     .delete(`http://localhost:8090/API/v1.0/budget/vehiculos/${id}`)
     .then((r) => r.data);
-  console.log(typeof(id));
+  // console.log(typeof(id));
   console.log("eliminando vehiculo");
 };
 
 export const eliminarDatosFachada = async (id) => {
-  return await eliminarDatos(id);
+  await eliminarDatos(id);
 };
 
 //funcion 6
@@ -114,4 +114,28 @@ const actualizarDatos = async (id, body) => {
 };
 export const actualizarDatosFachada = async (id, body) => {
   return await actualizarDatos(id, body);
+};
+
+//vehiculoTo id client
+const buscarVehiculoId = async (id) => {
+  const data = axios
+    .get(`http://localhost:8090/API/v1.0/budget/vehiculos/${id}`)
+    .then((r) => r.data);
+  return data;
+};
+
+export const buscarVehiculoIdFachada = async (id) => {
+  return await buscarVehiculoId(id);
+};
+
+//ID ORIGINAL VEHICULO
+const buscarVehiculoOriginId = async (id) => {
+  const data = axios
+    .get(`http://localhost:8090/API/v1.0/budget/vehiculos/vehiOriginal/${id}`)
+    .then((r) => r.data);
+  return data;
+};
+
+export const buscarVehiculoOriginIdFachada = async (id) => {
+  return await buscarVehiculoOriginId(id);
 };

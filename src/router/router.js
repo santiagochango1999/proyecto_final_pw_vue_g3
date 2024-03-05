@@ -41,9 +41,17 @@ const routes = [
     component: () => import("../components/empleados/CRUDVehiculo"),
   },
   {
-    path: "/crudVehiculo/:action",
+    path: "/crudVehiculo",
     component: () => import("../components/empleados/CRUDVehiculo.vue"),
   },
+  {
+    path: "/crud2Vehiculo",
+    component: () => import("../page/PaginaVehiculoActualizar.vue"),
+  },
+  // {
+  //   path: "/crud2Vehiculo",
+  //   component: () => import("../page/PaginaVehiculoBuscar.vue"),
+  // }
 ];
 
 const router = createRouter({ history: createWebHashHistory(), routes });
